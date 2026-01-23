@@ -3,8 +3,8 @@
    ======================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Pista para los curiosos que miran la consola
-    console.log('%c🎮 ¿Recuerdas Contra? 30 vidas... ↑↑↓↓←→←→BA', 'color: #8b5cf6; font-size: 10px;');
+    // Sometimes the old ways are the best
+    console.log('%c🎮 30 lives. You know what to do.', 'color: #8b5cf6; font-size: 10px;');
     
     // Inicializar todas las funcionalidades
     initNavigation();
@@ -381,7 +381,7 @@ if (typeof module !== 'undefined' && module.exports) {
         overlay.className = 'konami-overlay';
         overlay.innerHTML = `
             <div class="konami-content">
-                <h2>🎮 ¡CÓDIGO KONAMI ACTIVADO! 🎮</h2>
+                <h2>🔓 ACCESO DESBLOQUEADO 🔓</h2>
                 <a href="https://mutenros.github.io" class="konami-btn">ENTRAR AL PORTAL SECRETO</a>
                 <button class="konami-close">✕ Cerrar</button>
             </div>
