@@ -153,36 +153,44 @@ function initPortfolioFilter() {
 function initContactForm() {
     const form = document.getElementById('contact-form');
     
-    form?.addEventListener('submit', (e) => {
+    form?.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        // Obtener datos del formulario
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData);
-        
-        // Aquí puedes integrar con un servicio como Formspree, EmailJS, etc.
-        console.log('Datos del formulario:', data);
-        
-        // Simulación de envío exitoso
         const submitBtn = form.querySelector('button[type="submit"]');
+        const statusMsg = form.querySelector('.form-status');
         const originalText = submitBtn.textContent;
         
         submitBtn.textContent = 'Enviando...';
         submitBtn.disabled = true;
         
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                statusMsg.textContent = '¡Mensaje enviado correctamente!';
+                statusMsg.style.color = '#10b981';
+                form.reset();
+            } else {
+                statusMsg.textContent = 'Error al enviar. Inténtalo de nuevo.';
+                statusMsg.style.color = '#ef4444';
+            }
+        } catch (error) {
+            statusMsg.textContent = 'Error al enviar. Inténtalo de nuevo.';
+            statusMsg.style.color = '#ef4444';
+        }
+        
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+        
         setTimeout(() => {
-            submitBtn.textContent = '¡Mensaje enviado!';
-            submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-            
-            // Resetear formulario
-            form.reset();
-            
-            setTimeout(() => {
-                submitBtn.textContent = originalText;
-                submitBtn.style.background = '';
-                submitBtn.disabled = false;
-            }, 3000);
-        }, 1500);
+            statusMsg.textContent = '';
+        }, 5000);
     });
 }
 

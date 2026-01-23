@@ -779,6 +779,13 @@ img {
     width: 100%;
 }
 
+.form-status {
+    text-align: center;
+    margin-top: var(--spacing-sm);
+    font-weight: 500;
+    min-height: 1.5rem;
+}
+
 /* ========================================
    Footer
    ======================================== */

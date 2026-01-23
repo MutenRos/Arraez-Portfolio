@@ -297,7 +297,7 @@
                     </div>
                 </div>
 
-                <form class="contact-form" action="https://formspree.io/f/mdaedzaw" method="POST">
+                <form class="contact-form" id="contact-form" action="https://formspree.io/f/mdaedzaw" method="POST">
                     <input type="hidden" name="_subject" value="Nuevo mensaje desde tu Portfolio">
                     <div class="form-group">
                         <input type="text" name="name" placeholder="Tu nombre" required>
@@ -309,6 +309,7 @@
                         <textarea name="message" placeholder="Tu mensaje" rows="5" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                    <p class="form-status"></p>
                 </form>
             </div>
         </div>
