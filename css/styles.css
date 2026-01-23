@@ -559,6 +559,14 @@ img {
     position: relative;
 }
 
+.about-image .profile-photo {
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: var(--border-radius-lg);
+}
+
 .about-image .placeholder-image {
     aspect-ratio: 1;
     max-width: 400px;
