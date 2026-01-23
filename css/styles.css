@@ -812,6 +812,15 @@ img {
     font-size: 0.8rem !important;
 }
 
+/* Pista 9: ¿Buscas algo? Prueba el código de Konami... */
+.secret-hint {
+    font-size: 0.4rem;
+    opacity: 0.05;
+    user-select: all;
+    margin-top: 1rem;
+    letter-spacing: 2px;
+}
+
 /* ========================================
    Animaciones
    ======================================== */

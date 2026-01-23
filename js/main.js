@@ -3,6 +3,9 @@
    ======================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Pista para los curiosos que miran la consola
+    console.log('%c🎮 ¿Recuerdas Contra? 30 vidas... ↑↑↓↓←→←→BA', 'color: #8b5cf6; font-size: 10px;');
+    
     // Inicializar todas las funcionalidades
     initNavigation();
     initScrollAnimations();
