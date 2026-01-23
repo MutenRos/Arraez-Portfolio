@@ -969,3 +969,87 @@ img {
         gap: var(--spacing-sm);
     }
 }
+
+/* ========================================
+   Easter Egg - Código Konami
+   ======================================== */
+.upside-down {
+    transform: rotate(180deg);
+    transition: transform 1s ease;
+}
+
+.konami-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transform: rotate(180deg);
+}
+
+.konami-content {
+    text-align: center;
+    animation: konamiPulse 0.5s ease infinite alternate;
+}
+
+.konami-content h2 {
+    font-family: var(--font-primary);
+    font-size: 2rem;
+    margin-bottom: var(--spacing-md);
+    background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #8b00ff);
+    background-size: 400% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: rainbow 2s linear infinite;
+}
+
+.konami-btn {
+    display: inline-block;
+    padding: 1.5rem 3rem;
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000;
+    background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #8b00ff);
+    background-size: 400% 100%;
+    border-radius: var(--border-radius-lg);
+    animation: rainbow 2s linear infinite;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.konami-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.8);
+}
+
+.konami-close {
+    display: block;
+    margin: var(--spacing-md) auto 0;
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--color-text-secondary);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.konami-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-text);
+}
+
+@keyframes rainbow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 400% 50%; }
+}
+
+@keyframes konamiPulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.02); }
+}

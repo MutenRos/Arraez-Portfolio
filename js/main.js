@@ -341,3 +341,54 @@ if (typeof module !== 'undefined' && module.exports) {
         initSkillBars
     };
 }
+
+/* ========================================
+   Easter Egg - Código Konami
+   ↑ ↑ ↓ ↓ ← → ← → B A
+   ======================================== */
+(function initKonamiCode() {
+    const konamiCode = [
+        'ArrowUp', 'ArrowUp', 
+        'ArrowDown', 'ArrowDown', 
+        'ArrowLeft', 'ArrowRight', 
+        'ArrowLeft', 'ArrowRight', 
+        'KeyB', 'KeyA'
+    ];
+    let konamiIndex = 0;
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.code === konamiCode[konamiIndex]) {
+            konamiIndex++;
+            
+            if (konamiIndex === konamiCode.length) {
+                activateEasterEgg();
+                konamiIndex = 0;
+            }
+        } else {
+            konamiIndex = 0;
+        }
+    });
+    
+    function activateEasterEgg() {
+        // Voltear todo boca abajo
+        document.body.classList.add('upside-down');
+        
+        // Crear overlay con botón
+        const overlay = document.createElement('div');
+        overlay.className = 'konami-overlay';
+        overlay.innerHTML = `
+            <div class="konami-content">
+                <h2>🎮 ¡CÓDIGO KONAMI ACTIVADO! 🎮</h2>
+                <a href="https://mutenros.github.io" class="konami-btn">ENTRAR AL PORTAL SECRETO</a>
+                <button class="konami-close">✕ Cerrar</button>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+        
+        // Botón para cerrar
+        overlay.querySelector('.konami-close').addEventListener('click', () => {
+            document.body.classList.remove('upside-down');
+            overlay.remove();
+        });
+    }
+})();
