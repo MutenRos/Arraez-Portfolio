@@ -774,6 +774,16 @@ img {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+}
+
+/* Accesibilidad: focus visible para teclado */
+.btn:focus-visible,
+.nav-link:focus-visible,
+.filter-btn:focus-visible,
+.social-link:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
 }
 
 .form-group input::placeholder,
@@ -810,6 +820,20 @@ img {
 .footer-note {
     margin-top: 0.5rem;
     font-size: 0.8rem !important;
+}
+
+/* Efecto hover en el enlace del footer */
+.footer a:hover {
+    color: var(--color-accent-light);
+    transition: color var(--transition-fast);
+}
+
+/* Contador de portfolio items */
+.portfolio-count {
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+    margin-bottom: var(--spacing-md);
 }
 
 /* The secret lies in the arrows */

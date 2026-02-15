@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initContactForm();
     initSmoothScroll();
     initSkillBars();
+    initImageFallbacks();
+    initPortfolioCount();
 });
 
 /* ========================================
@@ -146,6 +148,17 @@ function initPortfolioFilter() {
                     }, 300);
                 }
             });
+
+            // Actualizar contador de proyectos visibles
+            const countEl = document.querySelector('.portfolio-count');
+            if (countEl) {
+                const visibleCount = [...portfolioItems].filter(item => {
+                    const category = item.dataset.category;
+                    return filter === 'all' || category === filter;
+                }).length;
+                countEl.textContent = `Mostrando ${visibleCount} de ${portfolioItems.length} proyectos`;
+            }
+            });
         });
     });
 }
@@ -162,6 +175,14 @@ function initContactForm() {
         const submitBtn = form.querySelector('button[type="submit"]');
         const statusMsg = form.querySelector('.form-status');
         const originalText = submitBtn.textContent;
+        
+        // Validación del nombre (mínimo 2 caracteres)
+        const nameInput = form.querySelector('input[name="name"]');
+        if (nameInput && nameInput.value.trim().length < 2) {
+            statusMsg.textContent = 'Por favor, introduce un nombre válido.';
+            statusMsg.style.color = '#ef4444';
+            return;
+        }
         
         submitBtn.textContent = 'Enviando...';
         submitBtn.disabled = true;
@@ -316,6 +337,36 @@ function initLazyLoading() {
 
 // Inicializar lazy loading
 initLazyLoading();
+
+/* ========================================
+   Fallback de imágenes rotas
+   ======================================== */
+function initImageFallbacks() {
+    const images = document.querySelectorAll('.portfolio-image img');
+    images.forEach(img => {
+        img.addEventListener('error', () => {
+            img.style.display = 'none';
+            const placeholder = document.createElement('div');
+            placeholder.className = 'placeholder-image';
+            placeholder.textContent = '🖼️ Imagen no disponible';
+            img.parentElement.insertBefore(placeholder, img);
+        });
+    });
+}
+
+/* ========================================
+   Contador de proyectos visibles
+   ======================================== */
+function initPortfolioCount() {
+    const portfolioGrid = document.querySelector('.portfolio-grid');
+    const items = portfolioGrid?.querySelectorAll('.portfolio-item');
+    if (!portfolioGrid || !items) return;
+    
+    const countEl = document.createElement('p');
+    countEl.className = 'portfolio-count';
+    countEl.textContent = `Mostrando ${items.length} proyectos`;
+    portfolioGrid.parentElement.insertBefore(countEl, portfolioGrid);
+}
 
 // Tipado animado para el hero (opcional)
 function typeWriter(element, text, speed = 100) {
